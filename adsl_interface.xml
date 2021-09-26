@@ -1,0 +1,2682 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<adsl_interface>
+	<name>Get SNMP ADSL Interfaces</name>
+	<method>walk</method>
+	<description>ADSL-LINE-MIB-rfc2662mib</description>
+	<extends>IF-MIB-rfc2863</extends>
+	<oid_index>.1.3.6.1.2.1.10.94.1.1.1.1.3</oid_index>
+	<oid_index_parse>OID/REGEXP:^.{29}(.*)$</oid_index_parse>
+	<index_order_type>numeric</index_order_type>
+	<index_order>ifIndex</index_order>
+	<index_title_format>|chosen_order_field|</index_title_format>
+	<system_mibs>
+		<sysDescr>
+			<name>sysDescr</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.1.1</oid>
+			<syntax>DisplayString ( SIZE ( 0..255 ) )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[A textual description of the entity.  This value should include the full name and version identification of the system's hardware type, software operating-system, and networking software.]]></description>
+		</sysDescr>
+		<sysObjectID>
+			<name>sysObjectID</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.1.2</oid>
+			<syntax>OBJECT IDENTIFIER</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The vendor's authoritative identification of the network management subsystem contained in the entity.  This value is allocated within the SMI enterprises subtree (1.3.6.1.4.1) and provides an easy and unambiguous means for determining `what kind of box' is being managed.  For example, if vendor `Flintstones, Inc.' was assigned the subtree 1.3.6.1.4.1.4242, it could assign the identifier 1.3.6.1.4.1.4242.1.1 to its `Fred Router'.]]></description>
+		</sysObjectID>
+		<sysUpTime>
+			<name>sysUpTime</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.1.3</oid>
+			<syntax>TimeTicks</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The time (in hundredths of a second) since the network management portion of the system was last re-initialized.]]></description>
+		</sysUpTime>
+		<sysContact>
+			<name>sysContact</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.1.4</oid>
+			<syntax>DisplayString ( SIZE ( 0..255 ) )</syntax>
+			<source>value</source>
+			<access>read-write</access>
+			<direction>output</direction>
+			<description><![CDATA[The textual identification of the contact person for this managed node, together with information on how to contact this person.  If no contact information is known, the value is the zero-length string.]]></description>
+		</sysContact>
+		<sysName>
+			<name>sysName</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.1.5</oid>
+			<syntax>DisplayString ( SIZE ( 0..255 ) )</syntax>
+			<source>value</source>
+			<access>read-write</access>
+			<direction>output</direction>
+			<description><![CDATA[An administratively-assigned name for this managed node. By convention, this is the node's fully-qualified domain name.  If the name is unknown, the value is the zero-length string.]]></description>
+		</sysName>
+		<sysLocation>
+			<name>sysLocation</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.1.6</oid>
+			<syntax>DisplayString ( SIZE ( 0..255 ) )</syntax>
+			<source>value</source>
+			<access>read-write</access>
+			<direction>output</direction>
+			<description><![CDATA[The physical location of this node (e.g., `telephone closet, 3rd floor').  If the location is unknown, the value is the zero-length string.]]></description>
+		</sysLocation>
+		<sysServices>
+			<name>sysServices</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.1.7</oid>
+			<syntax>INTEGER ( 0..127 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[A value which indicates the set of services that this entity may potentially offers.  The value is a sum.  This sum initially takes the value zero, Then, for each layer, L, in the range 1 through 7, that this node performs transactions for, 2 raised to (L - 1) is added to the sum. For example, a node which performs only routing functions would have a value of 4 (2^(3-1)).  In contrast, a node which is a host offering application services would have a value of 72 (2^(4-1) + 2^(7-1)).  Note that in the context of the Internet suite of protocols, values should be calculated accordingly: layer      functionality 1        physical (e.g., repeaters) 2        datalink/subnetwork (e.g., bridges) 3        internet (e.g., supports the IP) 4        end-to-end  (e.g., supports the TCP) 7        applications (e.g., supports the SMTP) For systems including OSI protocols, layers 5 and 6 may also be counted.]]></description>
+		</sysServices>
+		<sysORLastChange>
+			<name>sysORLastChange</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.1.8</oid>
+			<syntax>TimeStamp</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The value of sysUpTime at the time of the most recent change in state or value of any instance of sysORID.]]></description>
+		</sysORLastChange>
+		<sysOREntry>
+			<name>sysOREntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.1.9.1</oid>
+			<syntax>SysOREntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry (conceptual row) in the sysORTable.]]></description>
+		</sysOREntry>
+		<sysORIndex>
+			<name>sysORIndex</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.1.9.1.1</oid>
+			<syntax>INTEGER ( 1..2147483647 )</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[The auxiliary variable used for identifying instances of the columnar objects in the sysORTable.]]></description>
+		</sysORIndex>
+		<sysORID>
+			<name>sysORID</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.1.9.1.2</oid>
+			<syntax>OBJECT IDENTIFIER</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[An authoritative identification of a capabilities statement with respect to various MIB modules supported by the local SNMPv2 entity acting in an agent role.]]></description>
+		</sysORID>
+		<sysORDescr>
+			<name>sysORDescr</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.1.9.1.3</oid>
+			<syntax>DisplayString</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[A textual description of the capabilities identified by the corresponding instance of sysORID.]]></description>
+		</sysORDescr>
+		<sysORUpTime>
+			<name>sysORUpTime</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.1.9.1.4</oid>
+			<syntax>TimeStamp</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The value of sysUpTime at the time this conceptual row was last instanciated.]]></description>
+		</sysORUpTime>
+	</system_mibs>
+	<fields>
+		<ifIndex>
+			<name>ifIndex</name>
+			<method>walk</method>
+			<source>index</source>
+			<direction>input</direction>
+		</ifIndex>
+		<ifDescr>
+			<name>ifDescr</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.2</oid>
+			<syntax>DisplayString ( SIZE ( 0..255 ) )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>input-output</direction>
+			<description><![CDATA[A textual string containing information about the interface.  This string should include the name of the manufacturer, the product name and the version of the interface hardware/software.]]></description>
+		</ifDescr>
+		<ifType>
+			<name>ifType</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.3</oid>
+			<syntax>IANAifType</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>input-output</direction>
+			<description><![CDATA[The type of interface.  Additional values for ifType are assigned by the Internet Assigned Numbers Authority (IANA), through updating the syntax of the IANAifType textual convention.]]></description>
+		</ifType>
+		<ifMtu>
+			<name>ifMtu</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.4</oid>
+			<syntax>Integer32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The size of the largest packet which can be sent/received on the interface, specified in octets.  For interfaces that are used for transmitting network datagrams, this is the size of the largest network datagram that can be sent on the interface.]]></description>
+		</ifMtu>
+		<ifSpeed>
+			<name>ifSpeed</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.5</oid>
+			<syntax>Gauge32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[An estimate of the interface's current bandwidth in bits per second.  For interfaces which do not vary in bandwidth or for those where no accurate estimation can be made, this object should contain the nominal bandwidth.  If the bandwidth of the interface is greater than the maximum value reportable by this object then this object should report its maximum value (4,294,967,295) and ifHighSpeed must be used to report the interace's speed.  For a sub-layer which has no concept of bandwidth, this object should be zero.]]></description>
+		</ifSpeed>
+		<ifPhysAddress>
+			<name>ifPhysAddress</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.6</oid>
+			<syntax>PhysAddress</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>input</direction>
+			<description><![CDATA[The interface's address at its protocol sub-layer.  For example, for an 802.x interface, this object normally contains a MAC address.  The interface's media-specific MIB must define the bit and byte ordering and the format of the value of this object.  For interfaces which do not have such an address (e.g., a serial line), this object should contain an octet string of zero length.]]></description>
+		</ifPhysAddress>
+		<ifAdminStatus>
+			<name>ifAdminStatus</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.7</oid>
+			<syntax>INTEGER { up ( 1 ) , down ( 2 ) , testing ( 3 ) }</syntax>
+			<source>value</source>
+			<access>read-write</access>
+			<direction>input-output</direction>
+			<description><![CDATA[The desired state of the interface.  The testing(3) state indicates that no operational packets can be passed.  When a managed system initializes, all interfaces start with ifAdminStatus in the down(2) state.  As a result of either explicit management action or per configuration information retained by the managed system, ifAdminStatus is then changed to either the up(1) or testing(3) states (or remains in the down(2) state).]]></description>
+		</ifAdminStatus>
+		<ifOperStatus>
+			<name>ifOperStatus</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.8</oid>
+			<syntax>INTEGER { up ( 1 ) , down ( 2 ) , testing ( 3 ) , unknown ( 4 ) , dormant ( 5 ) , notPresent ( 6 ) , lowerLayerDown ( 7 ) }</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>input-output</direction>
+			<description><![CDATA[The current operational state of the interface.  The testing(3) state indicates that no operational packets can be passed.  If ifAdminStatus is down(2) then ifOperStatus should be down(2).  If ifAdminStatus is changed to up(1) then ifOperStatus should change to up(1) if the interface is ready to transmit and receive network traffic; it should change to dormant(5) if the interface is waiting for external actions (such as a serial line waiting for an incoming connection); it should remain in the down(2) state if and only if there is a fault that prevents it from going to the up(1) state; it should remain in the notPresent(6) state if the interface has missing (typically, hardware) components.]]></description>
+		</ifOperStatus>
+		<ifLastChange>
+			<name>ifLastChange</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.9</oid>
+			<syntax>TimeTicks</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The value of sysUpTime at the time the interface entered its current operational state.  If the current state was entered prior to the last re-initialization of the local network management subsystem, then this object contains a zero value.]]></description>
+		</ifLastChange>
+		<ifInOctets>
+			<name>ifInOctets</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.10</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The total number of octets received on the interface, including framing characters. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifInOctets>
+		<ifInUcastPkts>
+			<name>ifInUcastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.11</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of packets, delivered by this sub-layer to a higher (sub-)layer, which were not addressed to a multicast or broadcast address at this sub-layer. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifInUcastPkts>
+		<ifInNUcastPkts>
+			<name>ifInNUcastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.12</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of packets, delivered by this sub-layer to a higher (sub-)layer, which were addressed to a multicast or broadcast address at this sub-layer. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime. This object is deprecated in favour of ifInMulticastPkts and ifInBroadcastPkts.]]></description>
+		</ifInNUcastPkts>
+		<ifInDiscards>
+			<name>ifInDiscards</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.13</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of inbound packets which were chosen to be discarded even though no errors had been detected to prevent their being deliverable to a higher-layer protocol.  One possible reason for discarding such a packet could be to free up buffer space. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifInDiscards>
+		<ifInErrors>
+			<name>ifInErrors</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.14</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[For packet-oriented interfaces, the number of inbound packets that contained errors preventing them from being deliverable to a higher-layer protocol.  For character- oriented or fixed-length interfaces, the number of inbound transmission units that contained errors preventing them from being deliverable to a higher-layer protocol. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifInErrors>
+		<ifInUnknownProtos>
+			<name>ifInUnknownProtos</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.15</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[For packet-oriented interfaces, the number of packets received via the interface which were discarded because of an unknown or unsupported protocol.  For character-oriented or fixed-length interfaces that support protocol multiplexing the number of transmission units received via the interface which were discarded because of an unknown or unsupported protocol.  For any interface that does not support protocol multiplexing, this counter will always be 0. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifInUnknownProtos>
+		<ifOutOctets>
+			<name>ifOutOctets</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.16</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The total number of octets transmitted out of the interface, including framing characters. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifOutOctets>
+		<ifOutUcastPkts>
+			<name>ifOutUcastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.17</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The total number of packets that higher-level protocols requested be transmitted, and which were not addressed to a multicast or broadcast address at this sub-layer, including those that were discarded or not sent. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifOutUcastPkts>
+		<ifOutNUcastPkts>
+			<name>ifOutNUcastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.18</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The total number of packets that higher-level protocols requested be transmitted, and which were addressed to a multicast or broadcast address at this sub-layer, including those that were discarded or not sent. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime. This object is deprecated in favour of ifOutMulticastPkts and ifOutBroadcastPkts.]]></description>
+		</ifOutNUcastPkts>
+		<ifOutDiscards>
+			<name>ifOutDiscards</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.19</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of outbound packets which were chosen to be discarded even though no errors had been detected to prevent their being transmitted.  One possible reason for discarding such a packet could be to free up buffer space. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifOutDiscards>
+		<ifOutErrors>
+			<name>ifOutErrors</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.20</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[For packet-oriented interfaces, the number of outbound packets that could not be transmitted because of errors. For character-oriented or fixed-length interfaces, the number of outbound transmission units that could not be transmitted because of errors. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifOutErrors>
+		<ifOutQLen>
+			<name>ifOutQLen</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.21</oid>
+			<syntax>Gauge32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The length of the output packet queue (in packets).]]></description>
+		</ifOutQLen>
+		<ifSpecific>
+			<name>ifSpecific</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.2.2.1.22</oid>
+			<syntax>OBJECT IDENTIFIER</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>input-output</direction>
+			<description><![CDATA[A reference to MIB definitions specific to the particular media being used to realize the interface.  It is recommended that this value point to an instance of a MIB object in the media-specific MIB, i.e., that this object have the semantics associated with the InstancePointer textual convention defined in RFC 2579.  In fact, it is recommended that the media-specific MIB specify what value ifSpecific should/can take for values of ifType.  If no MIB definitions specific to the particular media are available, the value should be set to the OBJECT IDENTIFIER { 0 0 }.]]></description>
+		</ifSpecific>
+		<ifXEntry>
+			<name>ifXEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1</oid>
+			<syntax>IfXEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry containing additional management information applicable to a particular interface.]]></description>
+		</ifXEntry>
+		<ifName>
+			<name>ifName</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.1</oid>
+			<syntax>DisplayString</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>input-output</direction>
+			<description><![CDATA[The textual name of the interface.  The value of this object should be the name of the interface as assigned by the local device and should be suitable for use in commands entered at the device's `console'.  This might be a text name, such as `le0' or a simple port number, such as `1', depending on the interface naming syntax of the device.  If several entries in the ifTable together represent a single interface as named by the device, then each will have the same value of ifName.  Note that for an agent which responds to SNMP queries concerning an interface on some other (proxied) device, then the value of ifName for such an interface is the proxied device's local name for it. If there is no local name, or this object is otherwise not applicable, then this object contains a zero-length string.]]></description>
+		</ifName>
+		<ifInMulticastPkts>
+			<name>ifInMulticastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.2</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of packets, delivered by this sub-layer to a higher (sub-)layer, which were addressed to a multicast address at this sub-layer.  For a MAC layer protocol, this includes both Group and Functional addresses. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifInMulticastPkts>
+		<ifInBroadcastPkts>
+			<name>ifInBroadcastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.3</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of packets, delivered by this sub-layer to a higher (sub-)layer, which were addressed to a broadcast address at this sub-layer. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifInBroadcastPkts>
+		<ifOutMulticastPkts>
+			<name>ifOutMulticastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.4</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The total number of packets that higher-level protocols requested be transmitted, and which were addressed to a multicast address at this sub-layer, including those that were discarded or not sent.  For a MAC layer protocol, this includes both Group and Functional addresses. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifOutMulticastPkts>
+		<ifOutBroadcastPkts>
+			<name>ifOutBroadcastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.5</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The total number of packets that higher-level protocols requested be transmitted, and which were addressed to a broadcast address at this sub-layer, including those that were discarded or not sent. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifOutBroadcastPkts>
+		<ifHCInOctets>
+			<name>ifHCInOctets</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.6</oid>
+			<syntax>Counter64</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The total number of octets received on the interface, including framing characters.  This object is a 64-bit version of ifInOctets. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifHCInOctets>
+		<ifHCInUcastPkts>
+			<name>ifHCInUcastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.7</oid>
+			<syntax>Counter64</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of packets, delivered by this sub-layer to a higher (sub-)layer, which were not addressed to a multicast or broadcast address at this sub-layer.  This object is a 64-bit version of ifInUcastPkts. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifHCInUcastPkts>
+		<ifHCInMulticastPkts>
+			<name>ifHCInMulticastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.8</oid>
+			<syntax>Counter64</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of packets, delivered by this sub-layer to a higher (sub-)layer, which were addressed to a multicast address at this sub-layer.  For a MAC layer protocol, this includes both Group and Functional addresses.  This object is a 64-bit version of ifInMulticastPkts. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifHCInMulticastPkts>
+		<ifHCInBroadcastPkts>
+			<name>ifHCInBroadcastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.9</oid>
+			<syntax>Counter64</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of packets, delivered by this sub-layer to a higher (sub-)layer, which were addressed to a broadcast address at this sub-layer.  This object is a 64-bit version of ifInBroadcastPkts. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifHCInBroadcastPkts>
+		<ifHCOutOctets>
+			<name>ifHCOutOctets</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.10</oid>
+			<syntax>Counter64</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The total number of octets transmitted out of the interface, including framing characters.  This object is a 64-bit version of ifOutOctets. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifHCOutOctets>
+		<ifHCOutUcastPkts>
+			<name>ifHCOutUcastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.11</oid>
+			<syntax>Counter64</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The total number of packets that higher-level protocols requested be transmitted, and which were not addressed to a multicast or broadcast address at this sub-layer, including those that were discarded or not sent.  This object is a 64-bit version of ifOutUcastPkts. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifHCOutUcastPkts>
+		<ifHCOutMulticastPkts>
+			<name>ifHCOutMulticastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.12</oid>
+			<syntax>Counter64</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The total number of packets that higher-level protocols requested be transmitted, and which were addressed to a multicast address at this sub-layer, including those that were discarded or not sent.  For a MAC layer protocol, this includes both Group and Functional addresses.  This object is a 64-bit version of ifOutMulticastPkts. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifHCOutMulticastPkts>
+		<ifHCOutBroadcastPkts>
+			<name>ifHCOutBroadcastPkts</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.13</oid>
+			<syntax>Counter64</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The total number of packets that higher-level protocols requested be transmitted, and which were addressed to a broadcast address at this sub-layer, including those that were discarded or not sent.  This object is a 64-bit version of ifOutBroadcastPkts. Discontinuities in the value of this counter can occur at re-initialization of the management system, and at other times as indicated by the value of ifCounterDiscontinuityTime.]]></description>
+		</ifHCOutBroadcastPkts>
+		<ifLinkUpDownTrapEnable>
+			<name>ifLinkUpDownTrapEnable</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.14</oid>
+			<syntax>INTEGER { enabled ( 1 ) , disabled ( 2 ) }</syntax>
+			<source>value</source>
+			<access>read-write</access>
+			<direction>output</direction>
+			<description><![CDATA[Indicates whether linkUp/linkDown traps should be generated for this interface. By default, this object should have the value enabled(1) for interfaces which do not operate on 'top' of any other interface (as defined in the ifStackTable), and disabled(2) otherwise.]]></description>
+		</ifLinkUpDownTrapEnable>
+		<ifHighSpeed>
+			<name>ifHighSpeed</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.15</oid>
+			<syntax>Gauge32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[An estimate of the interface's current bandwidth in units of 1,000,000 bits per second.  If this object reports a value of `n' then the speed of the interface is somewhere in the range of `n-500,000' to `n+499,999'.  For interfaces which do not vary in bandwidth or for those where no accurate estimation can be made, this object should contain the nominal bandwidth.  For a sub-layer which has no concept of bandwidth, this object should be zero.]]></description>
+		</ifHighSpeed>
+		<ifPromiscuousMode>
+			<name>ifPromiscuousMode</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.16</oid>
+			<syntax>TruthValue</syntax>
+			<source>value</source>
+			<access>read-write</access>
+			<direction>output</direction>
+			<description><![CDATA[This object has a value of false(2) if this interface only accepts packets/frames that are addressed to this station. This object has a value of true(1) when the station accepts all packets/frames transmitted on the media.  The value true(1) is only legal on certain types of media.  If legal, setting this object to a value of true(1) may require the interface to be reset before becoming effective. The value of ifPromiscuousMode does not affect the reception of broadcast and multicast packets/frames by the interface.]]></description>
+		</ifPromiscuousMode>
+		<ifConnectorPresent>
+			<name>ifConnectorPresent</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.17</oid>
+			<syntax>TruthValue</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[This object has the value 'true(1)' if the interface sublayer has a physical connector and the value 'false(2)' otherwise.]]></description>
+		</ifConnectorPresent>
+		<ifAlias>
+			<name>ifAlias</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.18</oid>
+			<syntax>DisplayString ( SIZE ( 0..64 ) )</syntax>
+			<source>value</source>
+			<access>read-write</access>
+			<direction>input-output</direction>
+			<description><![CDATA[This object is an 'alias' name for the interface as specified by a network manager, and provides a non-volatile 'handle' for the interface. On the first instantiation of an interface, the value of ifAlias associated with that interface is the zero-length string.  As and when a value is written into an instance of ifAlias through a network management set operation, then the agent must retain the supplied value in the ifAlias instance associated with the same interface for as long as that interface remains instantiated, including across all re- initializations/reboots of the network management system, including those which result in a change of the interface's ifIndex value. An example of the value which a network manager might store in this object for a WAN interface is the (Telco's) circuit number/identifier of the interface. Some agents may support write-access only for interfaces having particular values of ifType.  An agent which supports write access to this object is required to keep the value in non-volatile storage, but it may limit the length of new values depending on how much storage is already occupied by the current values for other interfaces.]]></description>
+		</ifAlias>
+		<ifCounterDiscontinuityTime>
+			<name>ifCounterDiscontinuityTime</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.31.1.1.1.19</oid>
+			<syntax>TimeStamp</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The value of sysUpTime on the most recent occasion at which any one or more of this interface's counters suffered a discontinuity.  The relevant counters are the specific instances associated with this interface of any Counter32 or Counter64 object contained in the ifTable or ifXTable.  If no such discontinuities have occurred since the last re- initialization of the local management subsystem, then this object contains a zero value.]]></description>
+		</ifCounterDiscontinuityTime>
+		<adslLineEntry>
+			<name>adslLineEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.1.1</oid>
+			<syntax>AdslLineEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry in adslLineTable.]]></description>
+		</adslLineEntry>
+		<adslLineCoding>
+			<name>adslLineCoding</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.1.1.1</oid>
+			<syntax>AdslLineCodingType</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Specifies the ADSL coding type used on this line.]]></description>
+		</adslLineCoding>
+		<adslLineType>
+			<name>adslLineType</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.1.1.2</oid>
+			<syntax>INTEGER { noChannel ( 1 ) , fastOnly ( 2 ) , interleavedOnly ( 3 ) , fastOrInterleaved ( 4 ) , fastAndInterleaved ( 5 ) }</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Defines the type of ADSL physical line entity that exists, by defining whether and how the line is channelized.  If the line is channelized, the value will be other than noChannel(1).  This object defines which channel type(s) are supported. In the case that the line is channelized, the manager can use the ifStackTable to determine the ifIndex for the associated channel(s).]]></description>
+		</adslLineType>
+		<adslLineSpecific>
+			<name>adslLineSpecific</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.1.1.3</oid>
+			<syntax>VariablePointer</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[OID instance in vendor-specific MIB. The Instance may be used to determine shelf/slot/port of the ATUC interface in a DSLAM.]]></description>
+		</adslLineSpecific>
+		<adslLineConfProfile>
+			<name>adslLineConfProfile</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.1.1.4</oid>
+			<syntax>SnmpAdminString ( SIZE ( 1..32 ) )</syntax>
+			<source>value</source>
+			<access>read-write</access>
+			<direction>input-output</direction>
+			<description><![CDATA[The value of this object identifies the row in the ADSL Line Configuration Profile Table, (adslLineConfProfileTable), which applies for this ADSL line, and channels if applicable. For `dynamic' mode, in the case which the configuration profile has not been set, the value will be set to `DEFVAL'. If the implementator of this MIB has chosen not to implement `dynamic assignment' of profiles, this object's MIN-ACCESS is read-only.]]></description>
+		</adslLineConfProfile>
+		<adslLineAlarmConfProfile>
+			<name>adslLineAlarmConfProfile</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.1.1.5</oid>
+			<syntax>SnmpAdminString ( SIZE ( 1..32 ) )</syntax>
+			<source>value</source>
+			<access>read-write</access>
+			<direction>output</direction>
+			<description><![CDATA[The value of this object identifies the row in the ADSL Line Alarm Configuration Profile Table, (adslLineAlarmConfProfileTable), which applies to this ADSL line, and channels if applicable. For `dynamic' mode, in the case which the alarm profile has not been set, the value will be set to `DEFVAL'. If the implementator of this MIB has chosen not to implement `dynamic assignment' of profiles, this object's MIN-ACCESS is read-only.]]></description>
+		</adslLineAlarmConfProfile>
+		<adslAtucChanPerfDataEntry>
+			<name>adslAtucChanPerfDataEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1</oid>
+			<syntax>AdslAtucChanPerfDataEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry in adslAtucChanPerfDataTable.]]></description>
+		</adslAtucChanPerfDataEntry>
+		<adslAtucChanReceivedBlks>
+			<name>adslAtucChanReceivedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.1</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks received on this channel since agent reset.]]></description>
+		</adslAtucChanReceivedBlks>
+		<adslAtucChanPerfCurr15MinCorrectedBlks>
+			<name>adslAtucChanPerfCurr15MinCorrectedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.10</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with errors that were corrected on this channel within the current 15 minute interval.]]></description>
+		</adslAtucChanPerfCurr15MinCorrectedBlks>
+		<adslAtucChanPerfCurr15MinUncorrectBlks>
+			<name>adslAtucChanPerfCurr15MinUncorrectBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.11</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with uncorrectable errors on this channel within the current 15 minute interval.]]></description>
+		</adslAtucChanPerfCurr15MinUncorrectBlks>
+		<adslAtucChanPerfCurr1DayTimeElapsed>
+			<name>adslAtucChanPerfCurr1DayTimeElapsed</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.12</oid>
+			<syntax>AdslPerfTimeElapsed ( 0..86399 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Number of seconds that have elapsed since the beginning of the current 1-day interval.]]></description>
+		</adslAtucChanPerfCurr1DayTimeElapsed>
+		<adslAtucChanPerfCurr1DayReceivedBlks>
+			<name>adslAtucChanPerfCurr1DayReceivedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.13</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks received on this channel during the current day as measured by adslAtucChanPerfCurr1DayTimeElapsed.]]></description>
+		</adslAtucChanPerfCurr1DayReceivedBlks>
+		<adslAtucChanPerfCurr1DayTransmittedBlks>
+			<name>adslAtucChanPerfCurr1DayTransmittedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.14</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks transmitted on this channel during the current day as measured by adslAtucChanPerfCurr1DayTimeElapsed.]]></description>
+		</adslAtucChanPerfCurr1DayTransmittedBlks>
+		<adslAtucChanPerfCurr1DayCorrectedBlks>
+			<name>adslAtucChanPerfCurr1DayCorrectedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.15</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with errors that were corrected on this channel during the current day as measured by adslAtucChanPerfCurr1DayTimeElapsed.]]></description>
+		</adslAtucChanPerfCurr1DayCorrectedBlks>
+		<adslAtucChanPerfCurr1DayUncorrectBlks>
+			<name>adslAtucChanPerfCurr1DayUncorrectBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.16</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with uncorrectable errors on this channel during the current day as measured by adslAtucChanPerfCurr1DayTimeElapsed.]]></description>
+		</adslAtucChanPerfCurr1DayUncorrectBlks>
+		<adslAtucChanPerfPrev1DayMoniSecs>
+			<name>adslAtucChanPerfPrev1DayMoniSecs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.17</oid>
+			<syntax>INTEGER ( 0..86400 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The amount of time in the previous 1-day interval over which the performance monitoring information is actually counted. This value will be the same as the interval duration except in a situation where performance monitoring data could not be collected for any reason.]]></description>
+		</adslAtucChanPerfPrev1DayMoniSecs>
+		<adslAtucChanPerfPrev1DayReceivedBlks>
+			<name>adslAtucChanPerfPrev1DayReceivedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.18</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks received on this channel within the most recent previous 1-day period.]]></description>
+		</adslAtucChanPerfPrev1DayReceivedBlks>
+		<adslAtucChanPerfPrev1DayTransmittedBlks>
+			<name>adslAtucChanPerfPrev1DayTransmittedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.19</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks transmitted on this channel within the most recent previous 1-day period.]]></description>
+		</adslAtucChanPerfPrev1DayTransmittedBlks>
+		<adslAtucChanTransmittedBlks>
+			<name>adslAtucChanTransmittedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.2</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks transmitted on this channel since agent reset.]]></description>
+		</adslAtucChanTransmittedBlks>
+		<adslAtucChanPerfPrev1DayCorrectedBlks>
+			<name>adslAtucChanPerfPrev1DayCorrectedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.20</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with errors that were corrected on this channel within the most recent previous 1-day period.]]></description>
+		</adslAtucChanPerfPrev1DayCorrectedBlks>
+		<adslAtucChanPerfPrev1DayUncorrectBlks>
+			<name>adslAtucChanPerfPrev1DayUncorrectBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.21</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with uncorrectable errors on this channel within the most recent previous 1-day period.]]></description>
+		</adslAtucChanPerfPrev1DayUncorrectBlks>
+		<adslAtucChanCorrectedBlks>
+			<name>adslAtucChanCorrectedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.3</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with errors that were corrected since agent reset.  These blocks are passed on as good data.]]></description>
+		</adslAtucChanCorrectedBlks>
+		<adslAtucChanUncorrectBlks>
+			<name>adslAtucChanUncorrectBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.4</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with uncorrectable errors since agent reset.]]></description>
+		</adslAtucChanUncorrectBlks>
+		<adslAtucChanPerfValidIntervals>
+			<name>adslAtucChanPerfValidIntervals</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.5</oid>
+			<syntax>INTEGER ( 0..96 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of previous 15-minute intervals in the interval table for which data was collected.  Given that n is the maximum # of intervals supported. The value will be n unless the measurement was (re-)started within the last (n*15) minutes, in which case the value will be the number of complete 15 minute intervals for which the agent has at least some data. In certain cases (e.g., in the case where the agent is a proxy) it is possible that some intervals are unavailable.  In this case, this interval is the maximum interval number for which data is available.]]></description>
+		</adslAtucChanPerfValidIntervals>
+		<adslAtucChanPerfInvalidIntervals>
+			<name>adslAtucChanPerfInvalidIntervals</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.6</oid>
+			<syntax>INTEGER ( 0..96 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of intervals in the range from 0 to the value of adslAtucChanPerfValidIntervals for which no data is available. This object will typically be zero except in cases where the data for some intervals are not available (e.g., in proxy situations).]]></description>
+		</adslAtucChanPerfInvalidIntervals>
+		<adslAtucChanPerfCurr15MinTimeElapsed>
+			<name>adslAtucChanPerfCurr15MinTimeElapsed</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.7</oid>
+			<syntax>AdslPerfTimeElapsed ( 0..899 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Total elapsed seconds in this interval.]]></description>
+		</adslAtucChanPerfCurr15MinTimeElapsed>
+		<adslAtucChanPerfCurr15MinReceivedBlks>
+			<name>adslAtucChanPerfCurr15MinReceivedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.8</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks received on this channel within the current 15 minute interval.]]></description>
+		</adslAtucChanPerfCurr15MinReceivedBlks>
+		<adslAtucChanPerfCurr15MinTransmittedBlks>
+			<name>adslAtucChanPerfCurr15MinTransmittedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.10.1.9</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks transmitted on this channel within the current 15 minute interval.]]></description>
+		</adslAtucChanPerfCurr15MinTransmittedBlks>
+		<adslAturChanPerfDataEntry>
+			<name>adslAturChanPerfDataEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1</oid>
+			<syntax>AdslAturChanPerfDataEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry in adslAturChanPerfDataTable.]]></description>
+		</adslAturChanPerfDataEntry>
+		<adslAturChanReceivedBlks>
+			<name>adslAturChanReceivedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.1</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks received on this channel since agent reset.]]></description>
+		</adslAturChanReceivedBlks>
+		<adslAturChanPerfCurr15MinCorrectedBlks>
+			<name>adslAturChanPerfCurr15MinCorrectedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.10</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with errors that were corrected on this channel within the current 15 minute interval.]]></description>
+		</adslAturChanPerfCurr15MinCorrectedBlks>
+		<adslAturChanPerfCurr15MinUncorrectBlks>
+			<name>adslAturChanPerfCurr15MinUncorrectBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.11</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with uncorrectable errors on this channel within the current 15 minute interval.]]></description>
+		</adslAturChanPerfCurr15MinUncorrectBlks>
+		<adslAturChanPerfCurr1DayTimeElapsed>
+			<name>adslAturChanPerfCurr1DayTimeElapsed</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.12</oid>
+			<syntax>AdslPerfTimeElapsed ( 0..86399 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Number of seconds that have elapsed since the beginning of the current 1-day interval.]]></description>
+		</adslAturChanPerfCurr1DayTimeElapsed>
+		<adslAturChanPerfCurr1DayReceivedBlks>
+			<name>adslAturChanPerfCurr1DayReceivedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.13</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks received on this channel during the current day as measured by adslAturChanPerfCurr1DayTimeElapsed.]]></description>
+		</adslAturChanPerfCurr1DayReceivedBlks>
+		<adslAturChanPerfCurr1DayTransmittedBlks>
+			<name>adslAturChanPerfCurr1DayTransmittedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.14</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks transmitted on this channel during the current day as measured by adslAturChanPerfCurr1DayTimeElapsed.]]></description>
+		</adslAturChanPerfCurr1DayTransmittedBlks>
+		<adslAturChanPerfCurr1DayCorrectedBlks>
+			<name>adslAturChanPerfCurr1DayCorrectedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.15</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with errors that were corrected on this channel during the current day as measured by adslAturChanPerfCurr1DayTimeElapsed.]]></description>
+		</adslAturChanPerfCurr1DayCorrectedBlks>
+		<adslAturChanPerfCurr1DayUncorrectBlks>
+			<name>adslAturChanPerfCurr1DayUncorrectBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.16</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with uncorrectable errors on this channel during the current day as measured by adslAturChanPerfCurr1DayTimeElapsed.]]></description>
+		</adslAturChanPerfCurr1DayUncorrectBlks>
+		<adslAturChanPerfPrev1DayMoniSecs>
+			<name>adslAturChanPerfPrev1DayMoniSecs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.17</oid>
+			<syntax>INTEGER ( 0..86400 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The amount of time in the previous 1-day interval over which the performance monitoring information is actually counted. This value will be the same as the interval duration except in a situation where performance monitoring data could not be collected for any reason.]]></description>
+		</adslAturChanPerfPrev1DayMoniSecs>
+		<adslAturChanPerfPrev1DayReceivedBlks>
+			<name>adslAturChanPerfPrev1DayReceivedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.18</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks received on this channel within the most recent previous 1-day period.]]></description>
+		</adslAturChanPerfPrev1DayReceivedBlks>
+		<adslAturChanPerfPrev1DayTransmittedBlks>
+			<name>adslAturChanPerfPrev1DayTransmittedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.19</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks transmitted on this channel within the most recent previous 1-day period.]]></description>
+		</adslAturChanPerfPrev1DayTransmittedBlks>
+		<adslAturChanTransmittedBlks>
+			<name>adslAturChanTransmittedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.2</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks transmitted on this channel since agent reset.]]></description>
+		</adslAturChanTransmittedBlks>
+		<adslAturChanPerfPrev1DayCorrectedBlks>
+			<name>adslAturChanPerfPrev1DayCorrectedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.20</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with errors that were corrected on this channel within the most recent previous 1-day period.]]></description>
+		</adslAturChanPerfPrev1DayCorrectedBlks>
+		<adslAturChanPerfPrev1DayUncorrectBlks>
+			<name>adslAturChanPerfPrev1DayUncorrectBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.21</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with uncorrectable errors on this channel within the most recent previous 1-day period.]]></description>
+		</adslAturChanPerfPrev1DayUncorrectBlks>
+		<adslAturChanCorrectedBlks>
+			<name>adslAturChanCorrectedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.3</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with errors that were corrected since agent reset.  These blocks are passed on as good data.]]></description>
+		</adslAturChanCorrectedBlks>
+		<adslAturChanUncorrectBlks>
+			<name>adslAturChanUncorrectBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.4</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with uncorrectable errors since agent reset.]]></description>
+		</adslAturChanUncorrectBlks>
+		<adslAturChanPerfValidIntervals>
+			<name>adslAturChanPerfValidIntervals</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.5</oid>
+			<syntax>INTEGER ( 0..96 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of previous 15-minute intervals in the interval table for which data was collected.  Given that n is the maximum # of intervals supported. The value will be n unless the measurement was (re-)started within the last (n*15) minutes, in which case the value will be the number of complete 15 minute intervals for which the agent has at least some data. In certain cases (e.g., in the case where the agent is a proxy) it is possible that some intervals are unavailable.  In this case, this interval is the maximum interval number for which data is available.]]></description>
+		</adslAturChanPerfValidIntervals>
+		<adslAturChanPerfInvalidIntervals>
+			<name>adslAturChanPerfInvalidIntervals</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.6</oid>
+			<syntax>INTEGER ( 0..96 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of intervals in the range from 0 to the value of adslAturChanPerfValidIntervals for which no data is available. This object will typically be zero except in cases where the data for some intervals are not available (e.g., in proxy situations).]]></description>
+		</adslAturChanPerfInvalidIntervals>
+		<adslAturChanPerfCurr15MinTimeElapsed>
+			<name>adslAturChanPerfCurr15MinTimeElapsed</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.7</oid>
+			<syntax>AdslPerfTimeElapsed ( 0..899 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Total elapsed seconds in this interval. A full interval is 900 seconds.]]></description>
+		</adslAturChanPerfCurr15MinTimeElapsed>
+		<adslAturChanPerfCurr15MinReceivedBlks>
+			<name>adslAturChanPerfCurr15MinReceivedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.8</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks received on this channel within the current 15 minute interval.]]></description>
+		</adslAturChanPerfCurr15MinReceivedBlks>
+		<adslAturChanPerfCurr15MinTransmittedBlks>
+			<name>adslAturChanPerfCurr15MinTransmittedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.11.1.9</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks transmitted on this channel within the current 15 minute interval.]]></description>
+		</adslAturChanPerfCurr15MinTransmittedBlks>
+		<adslAtucChanIntervalEntry>
+			<name>adslAtucChanIntervalEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.12.1</oid>
+			<syntax>AdslAtucChanIntervalEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry in the adslAtucIntervalTable.]]></description>
+		</adslAtucChanIntervalEntry>
+		<adslAtucChanIntervalNumber>
+			<name>adslAtucChanIntervalNumber</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.12.1.1</oid>
+			<syntax>INTEGER ( 1..96 )</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[Performance Data Interval number 1 is the the most recent previous interval; interval 96 is 24 hours ago.  Intervals 2..96 are optional.]]></description>
+		</adslAtucChanIntervalNumber>
+		<adslAtucChanIntervalReceivedBlks>
+			<name>adslAtucChanIntervalReceivedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.12.1.2</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks received on this channel during this interval.]]></description>
+		</adslAtucChanIntervalReceivedBlks>
+		<adslAtucChanIntervalTransmittedBlks>
+			<name>adslAtucChanIntervalTransmittedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.12.1.3</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks transmitted on this channel during this interval.]]></description>
+		</adslAtucChanIntervalTransmittedBlks>
+		<adslAtucChanIntervalCorrectedBlks>
+			<name>adslAtucChanIntervalCorrectedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.12.1.4</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with errors that were corrected on this channel during this interval.]]></description>
+		</adslAtucChanIntervalCorrectedBlks>
+		<adslAtucChanIntervalUncorrectBlks>
+			<name>adslAtucChanIntervalUncorrectBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.12.1.5</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with uncorrectable errors on this channel during this interval.]]></description>
+		</adslAtucChanIntervalUncorrectBlks>
+		<adslAtucChanIntervalValidData>
+			<name>adslAtucChanIntervalValidData</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.12.1.6</oid>
+			<syntax>TruthValue</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[This variable indicates if the data for this interval is valid.]]></description>
+		</adslAtucChanIntervalValidData>
+		<adslAturChanIntervalEntry>
+			<name>adslAturChanIntervalEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.13.1</oid>
+			<syntax>AdslAturChanIntervalEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry in the adslAturIntervalTable.]]></description>
+		</adslAturChanIntervalEntry>
+		<adslAturChanIntervalNumber>
+			<name>adslAturChanIntervalNumber</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.13.1.1</oid>
+			<syntax>INTEGER ( 1..96 )</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[Performance Data Interval number 1 is the the most recent previous interval; interval 96 is 24 hours ago.  Intervals 2..96 are optional.]]></description>
+		</adslAturChanIntervalNumber>
+		<adslAturChanIntervalReceivedBlks>
+			<name>adslAturChanIntervalReceivedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.13.1.2</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks received on this channel during this interval.]]></description>
+		</adslAturChanIntervalReceivedBlks>
+		<adslAturChanIntervalTransmittedBlks>
+			<name>adslAturChanIntervalTransmittedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.13.1.3</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all encoded blocks transmitted on this channel during this interval.]]></description>
+		</adslAturChanIntervalTransmittedBlks>
+		<adslAturChanIntervalCorrectedBlks>
+			<name>adslAturChanIntervalCorrectedBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.13.1.4</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with errors that were corrected on this channel during this interval.]]></description>
+		</adslAturChanIntervalCorrectedBlks>
+		<adslAturChanIntervalUncorrectBlks>
+			<name>adslAturChanIntervalUncorrectBlks</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.13.1.5</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of all blocks received with uncorrectable errors on this channel during this interval.]]></description>
+		</adslAturChanIntervalUncorrectBlks>
+		<adslAturChanIntervalValidData>
+			<name>adslAturChanIntervalValidData</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.13.1.6</oid>
+			<syntax>TruthValue</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[This variable indicates if the data for this interval is valid.]]></description>
+		</adslAturChanIntervalValidData>
+		<adslLineConfProfileEntry>
+			<name>adslLineConfProfileEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1</oid>
+			<syntax>AdslLineConfProfileEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[Each entry consists of a list of parameters that represents the configuration of an ADSL modem. When `dynamic' profiles are implemented, a default profile will always exist.  This profile's name will be set to `DEFVAL' and its parameters will be set to vendor specific values, unless otherwise specified in this document. When `static' profiles are implemented, profiles are automaticly created or destroyed as ADSL physical lines are discovered and removed by the system.  The name of the profile will be equivalent to the decimal value of the line's interface index. ]]></description>
+		</adslLineConfProfileEntry>
+		<adslLineConfProfileName>
+			<name>adslLineConfProfileName</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.1</oid>
+			<syntax>SnmpAdminString ( SIZE ( 1..32 ) )</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[This object is used by the line configuration table in order to identify a row of this table. When `dynamic' profiles are implemented, the profile name is user specified.  Also, the system will always provide a default profile whose name is `DEFVAL'. When `static' profiles are implemented, there is an one-to-one relationship between each line and its profile.  In which case, the profile name will need to algorithmicly represent the Line's ifIndex. Therefore, the profile's name is a decimalized string of the ifIndex that is fixed-length (i.e., 10) with leading zero(s).  For example, the profile name for ifIndex which equals '15' will be '0000000015'.]]></description>
+		</adslLineConfProfileName>
+		<adslAtucConfMinDownshiftTime>
+			<name>adslAtucConfMinDownshiftTime</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.10</oid>
+			<syntax>INTEGER ( 0..16383 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Minimum time that the current margin is below DownshiftSnrMgn before a downshift occurs. In the case that RADSL mode is not present, the value will be `0'.]]></description>
+		</adslAtucConfMinDownshiftTime>
+		<adslAtucChanConfFastMinTxRate>
+			<name>adslAtucChanConfFastMinTxRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.11</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Minimum Transmit rate for `Fast' channels, in bps.  See adslAtucConfRateChanRatio for information regarding RADSL mode and ATUR transmit rate for ATUC receive rates.]]></description>
+		</adslAtucChanConfFastMinTxRate>
+		<adslAtucChanConfInterleaveMinTxRate>
+			<name>adslAtucChanConfInterleaveMinTxRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.12</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Minimum Transmit rate for `Interleave' channels, in bps.  See adslAtucConfRateChanRatio for information regarding RADSL mode and see ATUR transmit rate for receive rates.]]></description>
+		</adslAtucChanConfInterleaveMinTxRate>
+		<adslAtucChanConfFastMaxTxRate>
+			<name>adslAtucChanConfFastMaxTxRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.13</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Maximum Transmit rate for `Fast' channels, in bps.  See adslAtucConfRateChanRatio for information regarding RADSL mode and see ATUR transmit rate for ATUC receive rates.]]></description>
+		</adslAtucChanConfFastMaxTxRate>
+		<adslAtucChanConfInterleaveMaxTxRate>
+			<name>adslAtucChanConfInterleaveMaxTxRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.14</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Maximum Transmit rate for `Interleave' channels, in bps.  See adslAtucConfRateChanRatio for information regarding RADSL mode and ATUR transmit rate for ATUC receive rates.]]></description>
+		</adslAtucChanConfInterleaveMaxTxRate>
+		<adslAtucChanConfMaxInterleaveDelay>
+			<name>adslAtucChanConfMaxInterleaveDelay</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.15</oid>
+			<syntax>INTEGER ( 0..255 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured maximum Interleave Delay for this channel. Interleave delay applies only to the interleave channel and defines the mapping (relative spacing) between subsequent input bytes at the interleaver input and their placement in the bit stream at the interleaver output.  Larger numbers provide greater separation between consecutive input bytes in the output bit stream allowing for improved impulse noise immunity at the expense of payload latency.]]></description>
+		</adslAtucChanConfMaxInterleaveDelay>
+		<adslAturConfRateMode>
+			<name>adslAturConfRateMode</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.16</oid>
+			<syntax>INTEGER { fixed ( 1 ) , adaptAtStartup ( 2 ) , adaptAtRuntime ( 3 ) }</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Defines what form of transmit rate adaptation is configured on this modem.  See ADSL Forum TR-005 [3] for more information.]]></description>
+		</adslAturConfRateMode>
+		<adslAturConfRateChanRatio>
+			<name>adslAturConfRateChanRatio</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.17</oid>
+			<syntax>INTEGER ( 0..100 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured allocation ratio of excess transmit bandwidth between fast and interleaved channels.  Only applies when two channel mode and RADSL are supported. Distribute bandwidth on each channel in excess of the corresponding ChanConfMinTxRate so that: adslAturConfRateChanRatio = [Fast / (Fast + Interleaved)] * 100 In other words this value is the fast channel percentage.]]></description>
+		</adslAturConfRateChanRatio>
+		<adslAturConfTargetSnrMgn>
+			<name>adslAturConfTargetSnrMgn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.18</oid>
+			<syntax>INTEGER ( 0..310 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Target Signal/Noise Margin. This is the Noise Margin the modem must achieve with a BER of 10-7 or better to successfully complete initialization.]]></description>
+		</adslAturConfTargetSnrMgn>
+		<adslAturConfMaxSnrMgn>
+			<name>adslAturConfMaxSnrMgn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.19</oid>
+			<syntax>INTEGER ( 0..310 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Maximum acceptable Signal/Noise Margin. If the Noise Margin is above this the modem should attempt to reduce its power output to optimize its operation.]]></description>
+		</adslAturConfMaxSnrMgn>
+		<adslAtucConfRateMode>
+			<name>adslAtucConfRateMode</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.2</oid>
+			<syntax>INTEGER { fixed ( 1 ) , adaptAtStartup ( 2 ) , adaptAtRuntime ( 3 ) }</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Defines what form of transmit rate adaptation is configured on this modem.  See ADSL Forum TR-005 [3] for more information.]]></description>
+		</adslAtucConfRateMode>
+		<adslAturConfMinSnrMgn>
+			<name>adslAturConfMinSnrMgn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.20</oid>
+			<syntax>INTEGER ( 0..310 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Minimum acceptable Signal/Noise Margin. If the noise margin falls below this level, the modem should attempt to increase its power output.  If that is not possible the modem will attempt to re-initialize or shut down.]]></description>
+		</adslAturConfMinSnrMgn>
+		<adslAturConfDownshiftSnrMgn>
+			<name>adslAturConfDownshiftSnrMgn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.21</oid>
+			<syntax>INTEGER ( 0..310 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Signal/Noise Margin for rate downshift. If the noise margin falls below this level, the modem should attempt to decrease its transmit rate. In the case that RADSL mode is not present, the value will be `0'.]]></description>
+		</adslAturConfDownshiftSnrMgn>
+		<adslAturConfUpshiftSnrMgn>
+			<name>adslAturConfUpshiftSnrMgn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.22</oid>
+			<syntax>INTEGER ( 0..310 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Signal/Noise Margin for rate upshift. If the noise margin rises above this level, the modem should attempt to increase its transmit rate. In the case that RADSL is not present, the value will be `0'.]]></description>
+		</adslAturConfUpshiftSnrMgn>
+		<adslAturConfMinUpshiftTime>
+			<name>adslAturConfMinUpshiftTime</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.23</oid>
+			<syntax>INTEGER ( 0..16383 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Minimum time that the current margin is above UpshiftSnrMgn before an upshift occurs. In the case that RADSL is not present, the value will be `0'.]]></description>
+		</adslAturConfMinUpshiftTime>
+		<adslAturConfMinDownshiftTime>
+			<name>adslAturConfMinDownshiftTime</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.24</oid>
+			<syntax>INTEGER ( 0..16383 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Minimum time that the current margin is below DownshiftSnrMgn before a downshift occurs. In the case that RADSL mode is not present, the value will be `0'.]]></description>
+		</adslAturConfMinDownshiftTime>
+		<adslAturChanConfFastMinTxRate>
+			<name>adslAturChanConfFastMinTxRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.25</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Minimum Transmit rate for `Fast' channels, in bps.  See adslAturConfRateChanRatio for information regarding RADSL mode and ATUC transmit rate for ATUR receive rates.]]></description>
+		</adslAturChanConfFastMinTxRate>
+		<adslAturChanConfInterleaveMinTxRate>
+			<name>adslAturChanConfInterleaveMinTxRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.26</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Minimum Transmit rate for `Interleave' channels, in bps.  See adslAturConfRateChanRatio for information regarding RADSL mode and ATUC transmit rate for ATUR receive rates.]]></description>
+		</adslAturChanConfInterleaveMinTxRate>
+		<adslAturChanConfFastMaxTxRate>
+			<name>adslAturChanConfFastMaxTxRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.27</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Maximum Transmit rate for `Fast' channels, in bps.  See adslAturConfRateChanRatio for information regarding RADSL mode and ATUC transmit rate for ATUR receive rates.]]></description>
+		</adslAturChanConfFastMaxTxRate>
+		<adslAturChanConfInterleaveMaxTxRate>
+			<name>adslAturChanConfInterleaveMaxTxRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.28</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Maximum Transmit rate for `Interleave' channels, in bps.  See adslAturConfRateChanRatio for information regarding RADSL mode and see ATUC transmit rate for ATUR receive rates.]]></description>
+		</adslAturChanConfInterleaveMaxTxRate>
+		<adslAturChanConfMaxInterleaveDelay>
+			<name>adslAturChanConfMaxInterleaveDelay</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.29</oid>
+			<syntax>INTEGER ( 0..255 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured maximum Interleave Delay for this channel. Interleave delay applies only to the interleave channel and defines the mapping (relative spacing) between subsequent input bytes at the interleaver input and their placement in the bit stream at the interleaver output.  Larger numbers provide greater separation between consecutive input bytes in the output bit stream allowing for improved impulse noise immunity at the expense of payload latency.]]></description>
+		</adslAturChanConfMaxInterleaveDelay>
+		<adslAtucConfRateChanRatio>
+			<name>adslAtucConfRateChanRatio</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.3</oid>
+			<syntax>INTEGER ( 0..100 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured allocation ratio of excess transmit bandwidth between fast and interleaved channels.  Only applies when two channel mode and RADSL are supported. Distribute bandwidth on each channel in excess of the corresponding ChanConfMinTxRate so that: adslAtucConfRateChanRatio = [Fast / (Fast + Interleaved)] * 100 In other words this value is the fast channel percentage.]]></description>
+		</adslAtucConfRateChanRatio>
+		<adslLineConfProfileRowStatus>
+			<name>adslLineConfProfileRowStatus</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.30</oid>
+			<syntax>RowStatus</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[This object is used to create a new row or modify or delete an existing row in this table. A profile activated by setting this object to `active'.  When `active' is set, the system will validate the profile. Before a profile can be deleted or taken out of service, (by setting this object to `destroy' or `outOfService') it must be first unreferenced from all associated lines. If the implementator of this MIB has chosen not to implement `dynamic assignment' of profiles, this object's MIN-ACCESS is read-only and its value is always to be `active'.]]></description>
+		</adslLineConfProfileRowStatus>
+		<adslAtucConfTargetSnrMgn>
+			<name>adslAtucConfTargetSnrMgn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.4</oid>
+			<syntax>INTEGER ( 0..310 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Target Signal/Noise Margin. This is the Noise Margin the modem must achieve with a BER of 10-7 or better to successfully complete initialization.]]></description>
+		</adslAtucConfTargetSnrMgn>
+		<adslAtucConfMaxSnrMgn>
+			<name>adslAtucConfMaxSnrMgn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.5</oid>
+			<syntax>INTEGER ( 0..310 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Maximum acceptable Signal/Noise Margin. If the Noise Margin is above this the modem should attempt to reduce its power output to optimize its operation.]]></description>
+		</adslAtucConfMaxSnrMgn>
+		<adslAtucConfMinSnrMgn>
+			<name>adslAtucConfMinSnrMgn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.6</oid>
+			<syntax>INTEGER ( 0..310 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Minimum acceptable Signal/Noise Margin. If the noise margin falls below this level, the modem should attempt to increase its power output.  If that is not possible the modem will attempt to re-initialize or shut down.]]></description>
+		</adslAtucConfMinSnrMgn>
+		<adslAtucConfDownshiftSnrMgn>
+			<name>adslAtucConfDownshiftSnrMgn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.7</oid>
+			<syntax>INTEGER ( 0..310 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Signal/Noise Margin for rate downshift. If the noise margin falls below this level, the modem should attempt to decrease its transmit rate.  In the case that RADSL mode is not present, the value will be `0'.]]></description>
+		</adslAtucConfDownshiftSnrMgn>
+		<adslAtucConfUpshiftSnrMgn>
+			<name>adslAtucConfUpshiftSnrMgn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.8</oid>
+			<syntax>INTEGER ( 0..310 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Configured Signal/Noise Margin for rate upshift. If the noise margin rises above this level, the modem should attempt to increase its transmit rate.    In the case that RADSL is not present, the value will be `0'.]]></description>
+		</adslAtucConfUpshiftSnrMgn>
+		<adslAtucConfMinUpshiftTime>
+			<name>adslAtucConfMinUpshiftTime</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.14.1.9</oid>
+			<syntax>INTEGER ( 0..16383 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Minimum time that the current margin is above UpshiftSnrMgn before an upshift occurs. In the case that RADSL is not present, the value will be `0'.]]></description>
+		</adslAtucConfMinUpshiftTime>
+		<adslLineAlarmConfProfileEntry>
+			<name>adslLineAlarmConfProfileEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1</oid>
+			<syntax>AdslLineAlarmConfProfileEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[Each entry consists of a list of parameters that represents the configuration of an ADSL modem. When `dynamic' profiles are implemented, a default profile will always exist.  This profile's name will be set to `DEFVAL' and its parameters will be set to vendor specific values, unless otherwise specified in this document. When `static' profiles are implemented, profiles are automaticly created or destroyed as ADSL physical lines are discovered and removed by the system.  The name of the profile will be equivalent to the decimal value of the line's interface index. ]]></description>
+		</adslLineAlarmConfProfileEntry>
+		<adslLineAlarmConfProfileName>
+			<name>adslLineAlarmConfProfileName</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.1</oid>
+			<syntax>SnmpAdminString ( SIZE ( 1..32 ) )</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[This object is used by the line alarm configuration table in order to identify a row of this table. When `dynamic' profiles are implemented, the profile name is user specified.  Also, the system will always provide a default profile whose name is `DEFVAL'. When `static' profiles are implemented, there is an one-to-one relationship between each line and its profile.  In which case, the profile name will need to algorithmicly represent the Line's ifIndex. Therefore, the profile's name is a decimalized string of the ifIndex that is fixed-length (i.e., 10) with leading zero(s).  For example, the profile name for ifIndex which equals '15' will be '0000000015'.]]></description>
+		</adslLineAlarmConfProfileName>
+		<adslAtucThreshInterleaveRateDown>
+			<name>adslAtucThreshInterleaveRateDown</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.10</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Applies to `Interleave' channels only. Configured change in rate causing an adslAtucRateChangeTrap.  A trap is produced when: ChanCurrTxRate less then ChanPrevTxRate minus the value of this object. A value of `0' will disable the trap.]]></description>
+		</adslAtucThreshInterleaveRateDown>
+		<adslAtucInitFailureTrapEnable>
+			<name>adslAtucInitFailureTrapEnable</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.11</oid>
+			<syntax>INTEGER { enable ( 1 ) , disable ( 2 ) }</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Enables and disables the InitFailureTrap.  This object is defaulted disable(2)." DEFVAL { disable } ]]></description>
+		</adslAtucInitFailureTrapEnable>
+		<adslAturThresh15MinLofs>
+			<name>adslAturThresh15MinLofs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.12</oid>
+			<syntax>INTEGER ( 0..900 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of Loss of Frame Seconds encountered by an ADSL interface within any given 15 minutes performance data collection period, which causes the SNMP agent to send an adslAturPerfLofsThreshTrap. One trap will be sent per interval per interface. A value of `0' will disable the trap.]]></description>
+		</adslAturThresh15MinLofs>
+		<adslAturThresh15MinLoss>
+			<name>adslAturThresh15MinLoss</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.13</oid>
+			<syntax>INTEGER ( 0..900 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of Loss of Signal Seconds encountered by an ADSL interface within any given 15 minutes performance data collection period, which causes the SNMP agent to send an adslAturPerfLossThreshTrap. One trap will be sent per interval per interface. A value of `0' will disable the trap.]]></description>
+		</adslAturThresh15MinLoss>
+		<adslAturThresh15MinLprs>
+			<name>adslAturThresh15MinLprs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.14</oid>
+			<syntax>INTEGER ( 0..900 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of Loss of Power Seconds encountered by an ADSL interface within any given 15 minutes performance data collection period, which causes the SNMP agent to send an adslAturPerfLprsThreshTrap. One trap will be sent per interval per interface. A value of `0' will disable the trap.]]></description>
+		</adslAturThresh15MinLprs>
+		<adslAturThresh15MinESs>
+			<name>adslAturThresh15MinESs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.15</oid>
+			<syntax>INTEGER ( 0..900 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of Errored Seconds encountered by an ADSL interface within any given 15 minutes performance data collection period, which causes the SNMP agent to send an adslAturPerfESsThreshTrap. One trap will be sent per interval per interface. A value of `0' will disable the trap.]]></description>
+		</adslAturThresh15MinESs>
+		<adslAturThreshFastRateUp>
+			<name>adslAturThreshFastRateUp</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.16</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Applies to `Fast' channels only. Configured change in rate causing an adslAturRateChangeTrap.  A trap is produced when: ChanCurrTxRate &gt;= ChanPrevTxRate plus the value of this object. A value of `0' will disable the trap.]]></description>
+		</adslAturThreshFastRateUp>
+		<adslAturThreshInterleaveRateUp>
+			<name>adslAturThreshInterleaveRateUp</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.17</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Applies to `Interleave' channels only. configured change in rate causing an adslAturRateChangeTrap.  A trap is produced when: ChanCurrTxRate &gt;= ChanPrevTxRate plus the value of this object. A value of `0' will disable the trap.]]></description>
+		</adslAturThreshInterleaveRateUp>
+		<adslAturThreshFastRateDown>
+			<name>adslAturThreshFastRateDown</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.18</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Applies to `Fast' channels only. Configured change in rate causing an adslAturRateChangeTrap.  A trap is produced when: ChanCurrTxRate less then ChanPrevTxRate minus the value of this object. A value of `0' will disable the trap.]]></description>
+		</adslAturThreshFastRateDown>
+		<adslAturThreshInterleaveRateDown>
+			<name>adslAturThreshInterleaveRateDown</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.19</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Applies to `Interleave' channels only. Configured change in rate causing an adslAturRateChangeTrap.  A trap is produced when: ChanCurrTxRate less then ChanPrevTxRate minus the value of this object. A value of `0' will disable the trap.]]></description>
+		</adslAturThreshInterleaveRateDown>
+		<adslAtucThresh15MinLofs>
+			<name>adslAtucThresh15MinLofs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.2</oid>
+			<syntax>INTEGER ( 0..900 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of Loss of Frame Seconds encountered by an ADSL interface within any given 15 minutes performance data collection period, which causes the SNMP agent to send an adslAtucPerfLofsThreshTrap. One trap will be sent per interval per interface. A value of `0' will disable the trap.]]></description>
+		</adslAtucThresh15MinLofs>
+		<adslLineAlarmConfProfileRowStatus>
+			<name>adslLineAlarmConfProfileRowStatus</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.20</oid>
+			<syntax>RowStatus</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[This object is used to create a new row or modify or delete an existing row in this table. A profile activated by setting this object to `active'.  When `active' is set, the system will validate the profile. Before a profile can be deleted or taken out of service, (by setting this object to `destroy' or `outOfService') it must be first unreferenced from all associated lines. If the implementator of this MIB has chosen not to implement `dynamic assignment' of profiles, this object's MIN-ACCESS is read-only and its value is always to be `active'.]]></description>
+		</adslLineAlarmConfProfileRowStatus>
+		<adslAtucThresh15MinLoss>
+			<name>adslAtucThresh15MinLoss</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.3</oid>
+			<syntax>INTEGER ( 0..900 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of Loss of Signal Seconds encountered by an ADSL interface within any given 15 minutes performance data collection period, which causes the SNMP agent to send an adslAtucPerfLossThreshTrap. One trap will be sent per interval per interface. A value of `0' will disable the trap.]]></description>
+		</adslAtucThresh15MinLoss>
+		<adslAtucThresh15MinLols>
+			<name>adslAtucThresh15MinLols</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.4</oid>
+			<syntax>INTEGER ( 0..900 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of Loss of Link Seconds encountered by an ADSL interface within any given 15 minutes performance data collection period, which causes the SNMP agent to send an adslAtucPerfLolsThreshTrap. One trap will be sent per interval per interface. A value of `0' will disable the trap.]]></description>
+		</adslAtucThresh15MinLols>
+		<adslAtucThresh15MinLprs>
+			<name>adslAtucThresh15MinLprs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.5</oid>
+			<syntax>INTEGER ( 0..900 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of Loss of Power Seconds encountered by an ADSL interface within any given 15 minutes performance data collection period, which causes the SNMP agent to send an adslAtucPerfLprsThreshTrap. One trap will be sent per interval per interface. A value of `0' will disable the trap.]]></description>
+		</adslAtucThresh15MinLprs>
+		<adslAtucThresh15MinESs>
+			<name>adslAtucThresh15MinESs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.6</oid>
+			<syntax>INTEGER ( 0..900 )</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of Errored Seconds encountered by an ADSL interface within any given 15 minutes performance data collection period, which causes the SNMP agent to send an adslAtucPerfESsThreshTrap. One trap will be sent per interval per interface. A value of `0' will disable the trap.]]></description>
+		</adslAtucThresh15MinESs>
+		<adslAtucThreshFastRateUp>
+			<name>adslAtucThreshFastRateUp</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.7</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Applies to `Fast' channels only. Configured change in rate causing an adslAtucRateChangeTrap. A trap is produced when: ChanCurrTxRate &gt;= ChanPrevTxRate plus the value of this object. A value of `0' will disable the trap.]]></description>
+		</adslAtucThreshFastRateUp>
+		<adslAtucThreshInterleaveRateUp>
+			<name>adslAtucThreshInterleaveRateUp</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.8</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Applies to `Interleave' channels only. Configured change in rate causing an adslAtucRateChangeTrap.  A trap is produced when: ChanCurrTxRate &gt;= ChanPrevTxRate plus the value of this object. A value of `0' will disable the trap.]]></description>
+		</adslAtucThreshInterleaveRateUp>
+		<adslAtucThreshFastRateDown>
+			<name>adslAtucThreshFastRateDown</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.15.1.9</oid>
+			<syntax>Unsigned32</syntax>
+			<source>value</source>
+			<access>read-create</access>
+			<direction>output</direction>
+			<description><![CDATA[Applies to `Fast' channels only. Configured change in rate causing an adslAtucRateChangeTrap.  A trap is produced when: ChanCurrTxRate less then ChanPrevTxRate minus the value of this object. A value of `0' will disable the trap.]]></description>
+		</adslAtucThreshFastRateDown>
+		<adslAtucPhysEntry>
+			<name>adslAtucPhysEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.2.1</oid>
+			<syntax>AdslAtucPhysEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry in the adslAtucPhysTable.]]></description>
+		</adslAtucPhysEntry>
+		<adslAtucInvSerialNumber>
+			<name>adslAtucInvSerialNumber</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.2.1.1</oid>
+			<syntax>SnmpAdminString ( SIZE ( 0..32 ) )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The vendor specific string that identifies the vendor equipment.]]></description>
+		</adslAtucInvSerialNumber>
+		<adslAtucInvVendorID>
+			<name>adslAtucInvVendorID</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.2.1.2</oid>
+			<syntax>SnmpAdminString ( SIZE ( 0..16 ) )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The vendor ID code is a copy of the binary vendor identification field defined by the PHY[10] and expressed as readable characters.]]></description>
+		</adslAtucInvVendorID>
+		<adslAtucInvVersionNumber>
+			<name>adslAtucInvVersionNumber</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.2.1.3</oid>
+			<syntax>SnmpAdminString ( SIZE ( 0..16 ) )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The vendor specific version number sent by this ATU as part of the initialization messages.  It is a copy of the binary version number field defined by the PHY[10] and expressed as readable characters.]]></description>
+		</adslAtucInvVersionNumber>
+		<adslAtucCurrSnrMgn>
+			<name>adslAtucCurrSnrMgn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.2.1.4</oid>
+			<syntax>INTEGER ( -640..640 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Noise Margin as seen by this ATU with respect to its received signal in tenth dB.]]></description>
+		</adslAtucCurrSnrMgn>
+		<adslAtucCurrAtn>
+			<name>adslAtucCurrAtn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.2.1.5</oid>
+			<syntax>Gauge32 ( 0..630 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Measured difference in the total power transmitted by the peer ATU and the total power received by this ATU.]]></description>
+		</adslAtucCurrAtn>
+		<adslAtucCurrStatus>
+			<name>adslAtucCurrStatus</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.2.1.6</oid>
+			<syntax>BITS { noDefect ( 0 ) , lossOfFraming ( 1 ) , lossOfSignal ( 2 ) , lossOfPower ( 3 ) , lossOfSignalQuality ( 4 ) , lossOfLink ( 5 ) , dataInitFailure ( 6 ) , configInitFailure ( 7 ) , protocolInitFailure ( 8 ) , noPeerAtuPresent ( 9 ) }</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Indicates current state of the ATUC line.  This is a bit-map of possible conditions.  The various bit positions are: 0      noDefect             There no defects on the line 1      lossOfFraming        ATUC failure due to not receiving valid frame. 2      lossOfSignal         ATUC failure due to not receiving signal. 3      lossOfPower          ATUC failure due to loss of power. Note: the Agent may still function. 4      lossOfSignalQuality  Loss of Signal Quality is declared when the Noise Margin falls below the Minimum Noise Margin, or the bit-error-rate exceeds 10^-7. 5      lossOfLink           ATUC failure due to inability to link with ATUR. 6      dataInitFailure      ATUC failure during initialization due to bit errors corrupting startup exchange data. 7      configInitFailure    ATUC failure during initialization due to peer ATU not able to support requested configuration 8      protocolInitFailure  ATUC failure during initialization due to incompatible protocol used by the peer ATU. 9      noPeerAtuPresent     ATUC failure during initialization due to no activation sequence detected from peer ATU. This is intended to supplement ifOperStatus.]]></description>
+		</adslAtucCurrStatus>
+		<adslAtucCurrOutputPwr>
+			<name>adslAtucCurrOutputPwr</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.2.1.7</oid>
+			<syntax>INTEGER ( -310..310 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Measured total output power transmitted by this ATU. This is the measurement that was reported during the last activation sequence.]]></description>
+		</adslAtucCurrOutputPwr>
+		<adslAtucCurrAttainableRate>
+			<name>adslAtucCurrAttainableRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.2.1.8</oid>
+			<syntax>Gauge32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Indicates the maximum currently attainable data rate by the ATU.  This value will be equal or greater than the current line rate.]]></description>
+		</adslAtucCurrAttainableRate>
+		<adslAturPhysEntry>
+			<name>adslAturPhysEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.3.1</oid>
+			<syntax>AdslAturPhysEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry in the adslAturPhysTable.]]></description>
+		</adslAturPhysEntry>
+		<adslAturInvSerialNumber>
+			<name>adslAturInvSerialNumber</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.3.1.1</oid>
+			<syntax>SnmpAdminString ( SIZE ( 0..32 ) )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The vendor specific string that identifies the vendor equipment.]]></description>
+		</adslAturInvSerialNumber>
+		<adslAturInvVendorID>
+			<name>adslAturInvVendorID</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.3.1.2</oid>
+			<syntax>SnmpAdminString ( SIZE ( 0..16 ) )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The vendor ID code is a copy of the binary vendor identification field defined by the PHY[10] and expressed as readable characters.]]></description>
+		</adslAturInvVendorID>
+		<adslAturInvVersionNumber>
+			<name>adslAturInvVersionNumber</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.3.1.3</oid>
+			<syntax>SnmpAdminString ( SIZE ( 0..16 ) )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The vendor specific version number sent by this ATU as part of the initialization messages.  It is a copy of the binary version number field defined by the PHY[10] and expressed as readable characters.]]></description>
+		</adslAturInvVersionNumber>
+		<adslAturCurrSnrMgn>
+			<name>adslAturCurrSnrMgn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.3.1.4</oid>
+			<syntax>INTEGER ( -640..640 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Noise Margin as seen by this ATU with respect to its received signal in tenth dB.]]></description>
+		</adslAturCurrSnrMgn>
+		<adslAturCurrAtn>
+			<name>adslAturCurrAtn</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.3.1.5</oid>
+			<syntax>Gauge32 ( 0..630 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Measured difference in the total power transmitted by the peer ATU and the total power received by this ATU.]]></description>
+		</adslAturCurrAtn>
+		<adslAturCurrStatus>
+			<name>adslAturCurrStatus</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.3.1.6</oid>
+			<syntax>BITS { noDefect ( 0 ) , lossOfFraming ( 1 ) , lossOfSignal ( 2 ) , lossOfPower ( 3 ) , lossOfSignalQuality ( 4 ) }</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Indicates current state of the ATUR line.  This is a bit-map of possible conditions.  Due to the isolation of the ATUR when line problems occur, many state conditions like loss of power, loss of quality signal, and initialization errors,  can not be determined. While trouble shooting ATUR, also use object, adslAtucCurrStatus.  The various bit positions are: 0      noDefect             There no defects on the line 1      lossOfFraming        ATUR failure due to not receiving valid frame 2      lossOfSignal         ATUR failure due to not receiving signal 3      lossOfPower          ATUR failure due to loss of power 4      lossOfSignalQuality  Loss of Signal Quality is declared when the Noise Margin falls below the Minimum Noise Margin, or the bit-error-rate exceeds 10^-7. This is intended to supplement ifOperStatus.]]></description>
+		</adslAturCurrStatus>
+		<adslAturCurrOutputPwr>
+			<name>adslAturCurrOutputPwr</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.3.1.7</oid>
+			<syntax>INTEGER ( -310..310 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Measured total output power transmitted by this ATU. This is the measurement that was reported during the last activation sequence.]]></description>
+		</adslAturCurrOutputPwr>
+		<adslAturCurrAttainableRate>
+			<name>adslAturCurrAttainableRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.3.1.8</oid>
+			<syntax>Gauge32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Indicates the maximum currently attainable data rate by the ATU.  This value will be equal or greater than the current line rate.]]></description>
+		</adslAturCurrAttainableRate>
+		<adslAtucChanEntry>
+			<name>adslAtucChanEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.4.1</oid>
+			<syntax>AdslAtucChanEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry in the adslAtucChanTable.]]></description>
+		</adslAtucChanEntry>
+		<adslAtucChanInterleaveDelay>
+			<name>adslAtucChanInterleaveDelay</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.4.1.1</oid>
+			<syntax>Gauge32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Interleave Delay for this channel. Interleave delay applies only to the interleave channel and defines the mapping (relative spacing) between subsequent input bytes at the interleaver input and their placement in the bit stream at the interleaver output. Larger numbers provide greater separation between consecutive input bytes in the output bit stream allowing for improved impulse noise immunity at the expense of payload latency. In the case where the ifType is Fast(125), use noSuchObject.]]></description>
+		</adslAtucChanInterleaveDelay>
+		<adslAtucChanCurrTxRate>
+			<name>adslAtucChanCurrTxRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.4.1.2</oid>
+			<syntax>Gauge32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Actual transmit rate on this channel.]]></description>
+		</adslAtucChanCurrTxRate>
+		<adslAtucChanPrevTxRate>
+			<name>adslAtucChanPrevTxRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.4.1.3</oid>
+			<syntax>Gauge32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The rate at the time of the last adslAtucRateChangeTrap event. It is also set at initialization to prevent a trap being sent. Rate changes less than adslAtucThresh(*)RateDown or less than adslAtucThresh(*)RateUp will not cause a trap or cause this object to change. (*) == Fast or Interleave. See AdslLineAlarmConfProfileEntry.]]></description>
+		</adslAtucChanPrevTxRate>
+		<adslAtucChanCrcBlockLength>
+			<name>adslAtucChanCrcBlockLength</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.4.1.4</oid>
+			<syntax>Gauge32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Indicates the length of the channel data-block on which the CRC operates.  Refer to Line Code Specific MIBs, [11] and [12] for more information.]]></description>
+		</adslAtucChanCrcBlockLength>
+		<adslAturChanEntry>
+			<name>adslAturChanEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.5.1</oid>
+			<syntax>AdslAturChanEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry in the adslAturChanTable.]]></description>
+		</adslAturChanEntry>
+		<adslAturChanInterleaveDelay>
+			<name>adslAturChanInterleaveDelay</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.5.1.1</oid>
+			<syntax>Gauge32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Interleave Delay for this channel. Interleave delay applies only to the interleave channel and defines the mapping (relative spacing) between subsequent input bytes at the interleaver input and their placement in the bit stream at the interleaver output. Larger numbers provide greater separation between consecutive input bytes in the output bit stream allowing for improved impulse noise immunity at the expense of payload latency. In the case where the ifType is Fast(125), use noSuchObject.]]></description>
+		</adslAturChanInterleaveDelay>
+		<adslAturChanCurrTxRate>
+			<name>adslAturChanCurrTxRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.5.1.2</oid>
+			<syntax>Gauge32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Actual transmit rate on this channel.]]></description>
+		</adslAturChanCurrTxRate>
+		<adslAturChanPrevTxRate>
+			<name>adslAturChanPrevTxRate</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.5.1.3</oid>
+			<syntax>Gauge32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The rate at the time of the last adslAturRateChangeTrap event. It is also set at initialization to prevent a trap being sent. Rate changes less than adslAturThresh(*)RateDown or less than adslAturThresh(*)RateUp will not cause a trap or cause this object to change. (*) == Fast or Interleave. See AdslLineAlarmConfProfileEntry.]]></description>
+		</adslAturChanPrevTxRate>
+		<adslAturChanCrcBlockLength>
+			<name>adslAturChanCrcBlockLength</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.5.1.4</oid>
+			<syntax>Gauge32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Indicates the length of the channel data-block on which the CRC operates.  Refer to Line Code Specific MIBs, [11] and [12] for more information.]]></description>
+		</adslAturChanCrcBlockLength>
+		<adslAtucPerfDataEntry>
+			<name>adslAtucPerfDataEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1</oid>
+			<syntax>AdslAtucPerfDataEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry in adslAtucPerfDataTable.]]></description>
+		</adslAtucPerfDataEntry>
+		<adslAtucPerfLofs>
+			<name>adslAtucPerfLofs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.1</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of Loss of Framing failures since agent reset.]]></description>
+		</adslAtucPerfLofs>
+		<adslAtucPerfCurr15MinLofs>
+			<name>adslAtucPerfCurr15MinLofs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.10</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the current 15 minute interval when there was Loss of Framing.]]></description>
+		</adslAtucPerfCurr15MinLofs>
+		<adslAtucPerfCurr15MinLoss>
+			<name>adslAtucPerfCurr15MinLoss</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.11</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the current 15 minute interval when there was Loss of Signal.]]></description>
+		</adslAtucPerfCurr15MinLoss>
+		<adslAtucPerfCurr15MinLols>
+			<name>adslAtucPerfCurr15MinLols</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.12</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the current 15 minute interval when there was Loss of Link.]]></description>
+		</adslAtucPerfCurr15MinLols>
+		<adslAtucPerfCurr15MinLprs>
+			<name>adslAtucPerfCurr15MinLprs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.13</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the current 15 minute interval when there was Loss of Power.]]></description>
+		</adslAtucPerfCurr15MinLprs>
+		<adslAtucPerfCurr15MinESs>
+			<name>adslAtucPerfCurr15MinESs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.14</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of Errored Seconds in the current 15 minute interval.  The errored second parameter is a count of one-second intervals containing one or more crc anomalies, or one or more los or sef defects.]]></description>
+		</adslAtucPerfCurr15MinESs>
+		<adslAtucPerfCurr15MinInits>
+			<name>adslAtucPerfCurr15MinInits</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.15</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the line initialization attempts in the current 15 minute interval. Includes both successful and failed attempts.]]></description>
+		</adslAtucPerfCurr15MinInits>
+		<adslAtucPerfCurr1DayTimeElapsed>
+			<name>adslAtucPerfCurr1DayTimeElapsed</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.16</oid>
+			<syntax>AdslPerfTimeElapsed ( 0..86399 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Number of seconds that have elapsed since the beginning of the current 1-day interval.]]></description>
+		</adslAtucPerfCurr1DayTimeElapsed>
+		<adslAtucPerfCurr1DayLofs>
+			<name>adslAtucPerfCurr1DayLofs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.17</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of seconds when there was Loss of Framing during the current day as measured by adslAtucPerfCurr1DayTimeElapsed.]]></description>
+		</adslAtucPerfCurr1DayLofs>
+		<adslAtucPerfCurr1DayLoss>
+			<name>adslAtucPerfCurr1DayLoss</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.18</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of seconds when there was Loss of Signal during the current day as measured by adslAtucPerfCurr1DayTimeElapsed.]]></description>
+		</adslAtucPerfCurr1DayLoss>
+		<adslAtucPerfCurr1DayLols>
+			<name>adslAtucPerfCurr1DayLols</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.19</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of seconds when there was Loss of Link during the current day as measured by adslAtucPerfCurr1DayTimeElapsed.]]></description>
+		</adslAtucPerfCurr1DayLols>
+		<adslAtucPerfLoss>
+			<name>adslAtucPerfLoss</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.2</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of Loss of Signal failures since agent reset.]]></description>
+		</adslAtucPerfLoss>
+		<adslAtucPerfCurr1DayLprs>
+			<name>adslAtucPerfCurr1DayLprs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.20</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of seconds when there was Loss of Power during the current day as measured by adslAtucPerfCurr1DayTimeElapsed.]]></description>
+		</adslAtucPerfCurr1DayLprs>
+		<adslAtucPerfCurr1DayESs>
+			<name>adslAtucPerfCurr1DayESs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.21</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of Errored Seconds during the current day as measured by adslAtucPerfCurr1DayTimeElapsed. The errored second parameter is a count of one-second intervals containing one or more crc anomalies, or one or more los or sef defects.]]></description>
+		</adslAtucPerfCurr1DayESs>
+		<adslAtucPerfCurr1DayInits>
+			<name>adslAtucPerfCurr1DayInits</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.22</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the line initialization attempts in the day as measured by adslAtucPerfCurr1DayTimeElapsed. Includes both successful and failed attempts.]]></description>
+		</adslAtucPerfCurr1DayInits>
+		<adslAtucPerfPrev1DayMoniSecs>
+			<name>adslAtucPerfPrev1DayMoniSecs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.23</oid>
+			<syntax>INTEGER ( 0..86400 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The amount of time in the previous 1-day interval over which the performance monitoring information is actually counted. This value will be the same as the interval duration except in a situation where performance monitoring data could not be collected for any reason.]]></description>
+		</adslAtucPerfPrev1DayMoniSecs>
+		<adslAtucPerfPrev1DayLofs>
+			<name>adslAtucPerfPrev1DayLofs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.24</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Framing within the most recent previous 1-day period.]]></description>
+		</adslAtucPerfPrev1DayLofs>
+		<adslAtucPerfPrev1DayLoss>
+			<name>adslAtucPerfPrev1DayLoss</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.25</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Signal within the most recent previous 1-day period.]]></description>
+		</adslAtucPerfPrev1DayLoss>
+		<adslAtucPerfPrev1DayLols>
+			<name>adslAtucPerfPrev1DayLols</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.26</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Link within the most recent previous 1-day period.]]></description>
+		</adslAtucPerfPrev1DayLols>
+		<adslAtucPerfPrev1DayLprs>
+			<name>adslAtucPerfPrev1DayLprs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.27</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Power within the most recent previous 1-day period.]]></description>
+		</adslAtucPerfPrev1DayLprs>
+		<adslAtucPerfPrev1DayESs>
+			<name>adslAtucPerfPrev1DayESs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.28</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of Errored Seconds within the most recent previous 1-day period. The errored second parameter is a count of one-second intervals containing one or more crc anomalies, or one or more los or sef defects.]]></description>
+		</adslAtucPerfPrev1DayESs>
+		<adslAtucPerfPrev1DayInits>
+			<name>adslAtucPerfPrev1DayInits</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.29</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the line initialization attempts in the most recent previous 1-day period. Includes both successful and failed attempts.]]></description>
+		</adslAtucPerfPrev1DayInits>
+		<adslAtucPerfLols>
+			<name>adslAtucPerfLols</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.3</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of Loss of Link failures since agent reset.]]></description>
+		</adslAtucPerfLols>
+		<adslAtucPerfLprs>
+			<name>adslAtucPerfLprs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.4</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of Loss of Power failures since agent reset.]]></description>
+		</adslAtucPerfLprs>
+		<adslAtucPerfESs>
+			<name>adslAtucPerfESs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.5</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of Errored Seconds since agent reset.  The errored second parameter is a count of one-second intervals containing one or more crc anomalies, or one or more los or sef defects.]]></description>
+		</adslAtucPerfESs>
+		<adslAtucPerfInits>
+			<name>adslAtucPerfInits</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.6</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the line initialization attempts since agent reset. Includes both successful and failed attempts.]]></description>
+		</adslAtucPerfInits>
+		<adslAtucPerfValidIntervals>
+			<name>adslAtucPerfValidIntervals</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.7</oid>
+			<syntax>INTEGER ( 0..96 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of previous 15-minute intervals in the interval table for which data was collected.  Given that n is the maximum # of intervals supported. The value will be n unless the measurement was (re-)started within the last (n*15) minutes, in which case the value will be the number of complete 15 minute intervals for which the agent has at least some data. In certain cases (e.g., in the case where the agent is a proxy) it is possible that some intervals are unavailable.  In this case, this interval is the maximum interval number for which data is available.]]></description>
+		</adslAtucPerfValidIntervals>
+		<adslAtucPerfInvalidIntervals>
+			<name>adslAtucPerfInvalidIntervals</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.8</oid>
+			<syntax>INTEGER ( 0..96 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of intervals in the range from 0 to the value of adslAtucPerfValidIntervals for which no data is available. This object will typically be zero except in cases where the data for some intervals are not available (e.g., in proxy situations).]]></description>
+		</adslAtucPerfInvalidIntervals>
+		<adslAtucPerfCurr15MinTimeElapsed>
+			<name>adslAtucPerfCurr15MinTimeElapsed</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.6.1.9</oid>
+			<syntax>AdslPerfTimeElapsed ( 0..899 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Total elapsed seconds in this interval.]]></description>
+		</adslAtucPerfCurr15MinTimeElapsed>
+		<adslAturPerfDataEntry>
+			<name>adslAturPerfDataEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1</oid>
+			<syntax>AdslAturPerfDataEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry in adslAturPerfDataTable.]]></description>
+		</adslAturPerfDataEntry>
+		<adslAturPerfLofs>
+			<name>adslAturPerfLofs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.1</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of Loss of Framing failures since agent reset.]]></description>
+		</adslAturPerfLofs>
+		<adslAturPerfCurr15MinLprs>
+			<name>adslAturPerfCurr15MinLprs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.10</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the current 15 minute interval when there was Loss of Power.]]></description>
+		</adslAturPerfCurr15MinLprs>
+		<adslAturPerfCurr15MinESs>
+			<name>adslAturPerfCurr15MinESs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.11</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of Errored Seconds in the current 15 minute interval.  The errored second parameter is a count of one-second intervals containing one or more crc anomalies, or one or more los or sef defects.]]></description>
+		</adslAturPerfCurr15MinESs>
+		<adslAturPerfCurr1DayTimeElapsed>
+			<name>adslAturPerfCurr1DayTimeElapsed</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.12</oid>
+			<syntax>AdslPerfTimeElapsed ( 0..86399 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Number of seconds that have elapsed since the beginning of the current 1-day interval.]]></description>
+		</adslAturPerfCurr1DayTimeElapsed>
+		<adslAturPerfCurr1DayLofs>
+			<name>adslAturPerfCurr1DayLofs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.13</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of seconds when there was Loss of Framing during the current day as measured by adslAturPerfCurr1DayTimeElapsed.]]></description>
+		</adslAturPerfCurr1DayLofs>
+		<adslAturPerfCurr1DayLoss>
+			<name>adslAturPerfCurr1DayLoss</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.14</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of seconds when there was Loss of Signal during the current day as measured by adslAturPerfCurr1DayTimeElapsed.]]></description>
+		</adslAturPerfCurr1DayLoss>
+		<adslAturPerfCurr1DayLprs>
+			<name>adslAturPerfCurr1DayLprs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.15</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of seconds when there was Loss of Power during the current day as measured by adslAturPerfCurr1DayTimeElapsed.]]></description>
+		</adslAturPerfCurr1DayLprs>
+		<adslAturPerfCurr1DayESs>
+			<name>adslAturPerfCurr1DayESs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.16</oid>
+			<syntax>AdslPerfCurrDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of Errored Seconds during the current day as measured by adslAturPerfCurr1DayTimeElapsed. The errored second parameter is a count of one-second intervals containing one or more crc anomalies, or one or more los or sef defects.]]></description>
+		</adslAturPerfCurr1DayESs>
+		<adslAturPerfPrev1DayMoniSecs>
+			<name>adslAturPerfPrev1DayMoniSecs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.17</oid>
+			<syntax>INTEGER ( 0..86400 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The amount of time in the previous 1-day interval over which the performance monitoring information is actually counted. This value will be the same as the interval duration except in a situation where performance monitoring data could not be collected for any reason.]]></description>
+		</adslAturPerfPrev1DayMoniSecs>
+		<adslAturPerfPrev1DayLofs>
+			<name>adslAturPerfPrev1DayLofs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.18</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Framing within the most recent previous 1-day period.]]></description>
+		</adslAturPerfPrev1DayLofs>
+		<adslAturPerfPrev1DayLoss>
+			<name>adslAturPerfPrev1DayLoss</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.19</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Signal within the most recent previous 1-day period.]]></description>
+		</adslAturPerfPrev1DayLoss>
+		<adslAturPerfLoss>
+			<name>adslAturPerfLoss</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.2</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of Loss of Signal failures since agent reset.]]></description>
+		</adslAturPerfLoss>
+		<adslAturPerfPrev1DayLprs>
+			<name>adslAturPerfPrev1DayLprs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.20</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Power within the most recent previous 1-day period.]]></description>
+		</adslAturPerfPrev1DayLprs>
+		<adslAturPerfPrev1DayESs>
+			<name>adslAturPerfPrev1DayESs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.21</oid>
+			<syntax>AdslPerfPrevDayCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of Errored Seconds within the most recent previous 1-day period. The errored second parameter is a count of one-second intervals containing one or more crc anomalies, or one or more los or sef defects.]]></description>
+		</adslAturPerfPrev1DayESs>
+		<adslAturPerfLprs>
+			<name>adslAturPerfLprs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.3</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of Loss of Power failures since agent reset.]]></description>
+		</adslAturPerfLprs>
+		<adslAturPerfESs>
+			<name>adslAturPerfESs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.4</oid>
+			<syntax>Counter32</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the number of Errored Seconds since agent reset.  The errored second parameter is a count of one-second intervals containing one or more crc anomalies, or one or more los or sef defects.]]></description>
+		</adslAturPerfESs>
+		<adslAturPerfValidIntervals>
+			<name>adslAturPerfValidIntervals</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.5</oid>
+			<syntax>INTEGER ( 0..96 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of previous 15-minute intervals in the interval table for which data was collected.  Given that n is the maximum # of intervals supported. The value will be n unless the measurement was (re-)started within the last (n*15) minutes, in which case the value will be the number of complete 15 minute intervals for which the agent has at least some data. In certain cases (e.g., in the case where the agent is a proxy) it is possible that some intervals are unavailable.  In this case, this interval is the maximum interval number for which data is available.]]></description>
+		</adslAturPerfValidIntervals>
+		<adslAturPerfInvalidIntervals>
+			<name>adslAturPerfInvalidIntervals</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.6</oid>
+			<syntax>INTEGER ( 0..96 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[The number of intervals in the range from 0 to the value of adslAturPerfValidIntervals for which no data is available. This object will typically be zero except in cases where the data for some intervals are not available (e.g., in proxy situations).]]></description>
+		</adslAturPerfInvalidIntervals>
+		<adslAturPerfCurr15MinTimeElapsed>
+			<name>adslAturPerfCurr15MinTimeElapsed</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.7</oid>
+			<syntax>AdslPerfTimeElapsed ( 0..899 )</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Total elapsed seconds in this interval.]]></description>
+		</adslAturPerfCurr15MinTimeElapsed>
+		<adslAturPerfCurr15MinLofs>
+			<name>adslAturPerfCurr15MinLofs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.8</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the current 15 minute interval when there was Loss of Framing.]]></description>
+		</adslAturPerfCurr15MinLofs>
+		<adslAturPerfCurr15MinLoss>
+			<name>adslAturPerfCurr15MinLoss</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.7.1.9</oid>
+			<syntax>PerfCurrentCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the current 15 minute interval when there was Loss of Signal.]]></description>
+		</adslAturPerfCurr15MinLoss>
+		<adslAtucIntervalEntry>
+			<name>adslAtucIntervalEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.8.1</oid>
+			<syntax>AdslAtucIntervalEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry in the adslAtucIntervalTable.]]></description>
+		</adslAtucIntervalEntry>
+		<adslAtucIntervalNumber>
+			<name>adslAtucIntervalNumber</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.8.1.1</oid>
+			<syntax>INTEGER ( 1..96 )</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[Performance Data Interval number 1 is the the most recent previous interval; interval 96 is 24 hours ago.  Intervals 2..96 are optional.]]></description>
+		</adslAtucIntervalNumber>
+		<adslAtucIntervalLofs>
+			<name>adslAtucIntervalLofs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.8.1.2</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Framing.]]></description>
+		</adslAtucIntervalLofs>
+		<adslAtucIntervalLoss>
+			<name>adslAtucIntervalLoss</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.8.1.3</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Signal.]]></description>
+		</adslAtucIntervalLoss>
+		<adslAtucIntervalLols>
+			<name>adslAtucIntervalLols</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.8.1.4</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Link.]]></description>
+		</adslAtucIntervalLols>
+		<adslAtucIntervalLprs>
+			<name>adslAtucIntervalLprs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.8.1.5</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Power.]]></description>
+		</adslAtucIntervalLprs>
+		<adslAtucIntervalESs>
+			<name>adslAtucIntervalESs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.8.1.6</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of Errored Seconds in the interval. The errored second parameter is a count of one-second intervals containing one or more crc anomalies, or one or more los or sef defects.]]></description>
+		</adslAtucIntervalESs>
+		<adslAtucIntervalInits>
+			<name>adslAtucIntervalInits</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.8.1.7</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of the line initialization attempts during the interval. Includes both successful and failed attempts.]]></description>
+		</adslAtucIntervalInits>
+		<adslAtucIntervalValidData>
+			<name>adslAtucIntervalValidData</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.8.1.8</oid>
+			<syntax>TruthValue</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[This variable indicates if the data for this interval is valid.]]></description>
+		</adslAtucIntervalValidData>
+		<adslAturIntervalEntry>
+			<name>adslAturIntervalEntry</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.9.1</oid>
+			<syntax>AdslAturIntervalEntry</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[An entry in the adslAturIntervalTable.]]></description>
+		</adslAturIntervalEntry>
+		<adslAturIntervalNumber>
+			<name>adslAturIntervalNumber</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.9.1.1</oid>
+			<syntax>INTEGER ( 1..96 )</syntax>
+			<source>value</source>
+			<access>not-accessible</access>
+			<direction>output</direction>
+			<description><![CDATA[Performance Data Interval number 1 is the the most recent previous interval; interval 96 is 24 hours ago.  Intervals 2..96 are optional.]]></description>
+		</adslAturIntervalNumber>
+		<adslAturIntervalLofs>
+			<name>adslAturIntervalLofs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.9.1.2</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Framing.]]></description>
+		</adslAturIntervalLofs>
+		<adslAturIntervalLoss>
+			<name>adslAturIntervalLoss</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.9.1.3</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Signal.]]></description>
+		</adslAturIntervalLoss>
+		<adslAturIntervalLprs>
+			<name>adslAturIntervalLprs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.9.1.4</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of seconds in the interval when there was Loss of Power.]]></description>
+		</adslAturIntervalLprs>
+		<adslAturIntervalESs>
+			<name>adslAturIntervalESs</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.9.1.5</oid>
+			<syntax>PerfIntervalCount</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[Count of Errored Seconds in the interval. The errored second parameter is a count of one-second intervals containing one or more crc anomalies, or one or more los or sef defects.]]></description>
+		</adslAturIntervalESs>
+		<adslAturIntervalValidData>
+			<name>adslAturIntervalValidData</name>
+			<method>get</method>
+			<oid>1.3.6.1.2.1.10.94.1.1.9.1.6</oid>
+			<syntax>TruthValue</syntax>
+			<source>value</source>
+			<access>read-only</access>
+			<direction>output</direction>
+			<description><![CDATA[This variable indicates if the data for this interval is valid.]]></description>
+		</adslAturIntervalValidData>
+	</fields>
+</adsl_interface>
